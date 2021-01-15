@@ -5,19 +5,19 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Post.create!(
+User.create!(
   [
     {
-      title: 'オフィスの近くの焼き芋を売ってる店がある'
+      name: 'takaya',
+      email: 'takaya@gmail.com',
+      password: 'password',
+      password_confirmation: 'password',
     },
     {
-      title: '焼き芋を配るフロントエンジニアがいるらしい'
+      name: 'example',
+      email: 'example@gmail.com',
+      password: 'example',
+      password_confirmation: 'example',
     },
-    {
-      title: 'Postを予め多くしておかないとseedsが面倒'
-    },
-    {
-      title: 'このデータは近々resetされる悲しいデータです'
-    }
   ]
 )
