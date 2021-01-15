@@ -18,7 +18,7 @@ module Api
       @post = Post.new(post_params)
 
       if @post.save
-        render json: @post, status: :created, location: @post
+        render json: @post, status: :created
       else
         render json: @post.errors, status: :unprocessable_entity
       end
@@ -36,6 +36,7 @@ module Api
     # DELETE /posts/1
     def destroy
       @post.destroy
+      render json: { message: 'the post is deleleted',data: @post }
     end
 
     private

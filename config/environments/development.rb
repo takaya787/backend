@@ -12,7 +12,7 @@ Rails.application.configure do
 
   #変更がview以外も全て適用されるようにする
   config.cache_classes = false
-  # config.reload_classes_only_on_change = false
+  config.reload_classes_only_on_change = false
 
   # Do not eager load code on boot.
   config.eager_load = false
