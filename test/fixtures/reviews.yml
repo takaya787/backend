@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  reason: MyString
+  duration: 1
+  good: MyText
+  bad: MyText
+  advice: MyText
+  user: one
+
+two:
+  reason: MyString
+  duration: 1
+  good: MyText
+  bad: MyText
+  advice: MyText
+  user: two
