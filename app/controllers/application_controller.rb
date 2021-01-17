@@ -13,8 +13,8 @@ class ApplicationController < ActionController::API
       token = auth_header.split(' ')[1]
       #Header: {Authorization: 'Bearer <token>'}
       begin
-            JWT.decode(token, 's3cr3t', true, algorothm: 'HS256')
-          rescue JWT::DecodedError
+        JWT.decode(token, 's3cr3t', true, algorothm: 'HS256')
+      rescue JWT::DecodeError
         nil
       end
     end
@@ -23,14 +23,14 @@ class ApplicationController < ActionController::API
   def logged_in_user
     if decoded_token
       user_id = decoded_token[0]['user_id']
-      @user = User.find(user_id)
+      @current_user = User.find(user_id)
     end
   end
 
   def logged_in?
     !!logged_in_user
   end
-
+#authorizedをpassすることで、@current_userが設定される
   def authorized
     render json: { message: 'Please log in'}, status: :unauthorized unless logged_in?
   end
