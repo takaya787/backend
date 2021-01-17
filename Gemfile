@@ -21,6 +21,9 @@ gem 'jwt'
 gem 'dotenv-rails'
 # geocoderで位置検索を行えるようにする
 gem 'geocoder'
+#返却するjsonのカスタマイズを設定
+gem 'jbuilder', '~> 2.7'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

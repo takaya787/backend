@@ -21,3 +21,21 @@ User.create!(
     },
   ]
 )
+
+# Review.create!(
+#   [
+#     {
+#       "review" : {
+#           "reason":"reason",
+#           "duration":"12",
+#           "advice":"advice",
+#           "food":"food",
+#           "convenient":"convenient",
+#           "favorite":"favorite",
+#           "score":"3.5"
+#       },
+#       "lat":"",
+#       "lng":""
+#     }
+#   ]
+# )
