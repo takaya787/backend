@@ -12,7 +12,7 @@ module  Api
     end
 
     def create
-      @review = Review.new(user_params)
+      @review = Review.new(review_params)
       # if @user.save
       #   payload = {user_id: @user.id}
       #   token = encode_token(payload)
@@ -39,7 +39,7 @@ module  Api
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_review
-        @user = Review.find(params[:id])
+        @review = Review.find(params[:id])
       end
 
       # Only allow a list of trusted parameters through.
