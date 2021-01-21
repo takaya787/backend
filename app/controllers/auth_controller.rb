@@ -14,7 +14,7 @@ module Api
     end
 
     def auto_login
-      render json: {user: {email: @current_user.email, id: @current_user.id}}
+      render json: {user: {email: @current_user.email, id: @current_user.id,name: @current_user.name}}
     end
   end
 end
