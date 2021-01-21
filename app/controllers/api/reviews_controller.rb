@@ -1,4 +1,5 @@
 module  Api
+  #module Apiを使用する場合は対象のcontrollerをapi フォルダーに収納する必要がある
   class ReviewsController < ApplicationController
     #application_controller
     before_action :authorized, except: [:index,:check]
