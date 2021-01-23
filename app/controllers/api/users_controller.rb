@@ -1,6 +1,6 @@
 module Api
   class UsersController < ApplicationController
-    before_action :set_user, only: [:show, :update, :destroy]
+    before_action :set_user, only: [ :update, :destroy]
 
     # GET /users
     def index
@@ -11,7 +11,8 @@ module Api
 
     # GET /users/1
     def show
-      render json: @user
+      @user = User.includes(:reviews).find(params[:id])
+      render json: {id: @user.id, name: @user.name, email: @user.email, reviews: @user.reviews}
     end
 
     # POST /users
@@ -38,6 +39,7 @@ module Api
     # DELETE /users/1
     def destroy
       @user.destroy
+      render json: {message: 'Review is deleted successfully'},status: :okay
     end
 
     private

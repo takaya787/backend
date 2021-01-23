@@ -38,18 +38,19 @@ module  Api
     end
 
     # # PATCH/PUT /users/1
-    # def update
-    #   if @user.update(user_params)
-    #     render json: @user
-    #   else
-    #     render json: @user.errors, status: :unprocessable_entity
-    #   end
-    # end
+    def update
+      if @review.update(review_params)
+        render json: @review
+      else
+        render json: @review.errors, status: :unprocessable_entity
+      end
+    end
 
     # # DELETE /users/1
-    # def destroy
-    #   @user.destroy
-    # end
+    def destroy
+      @review.destroy
+      render json: {message: 'Review is deleted successfully'},status: :okay
+    end
 
     private
       # Use callbacks to share common setup or constraints between actions.
