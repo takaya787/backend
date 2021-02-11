@@ -11,7 +11,9 @@ module  Api
     end
 
     def show
-      render json: @review
+      @review = Review.includes(:spot).find(params[:id])
+
+      render json: {review: @review, spot: @review.spot}, status: :ok
     end
 
     def create
