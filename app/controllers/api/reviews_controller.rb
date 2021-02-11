@@ -17,10 +17,12 @@ module  Api
     end
 
     def create
+      #位置情報がなければreviewは作成しない
       result = Geocoder.search([ params[:lat], params[:lng] ])
       if result.empty?
-        render json: {message: '投稿場所を選んでください', status: :bad_request}
+        return render json: {message: '投稿場所を選んでください'}, status: :bad_request
       end
+
       @review = @current_user.reviews.new(review_params)
       if @review.save
         # has_manyとhas_oneでコードが変わる(former: has_many, latter: has_one)
@@ -55,7 +57,7 @@ module  Api
     # # DELETE /reviews/1
     def destroy
       @review.destroy
-      render json: {message: 'Review is deleted successfully'},status: :okay
+      render json: {message: 'Review is deleted successfully'},status: :ok
     end
 
     private
