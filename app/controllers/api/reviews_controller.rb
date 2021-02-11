@@ -17,9 +17,12 @@ module  Api
     end
 
     def create
+      result = Geocoder.search([ params[:lat], params[:lng] ]).first.address
+      if result.empty?
+        render json: {message: '投稿場所を選んでください', status: :bad_request}
+      end
       @review = @current_user.reviews.new(review_params)
       if @review.save
-        result = Geocoder.search([ params[:lat], params[:lng] ]).first.address
         # has_manyとhas_oneでコードが変わる(former: has_many, latter: has_one)
         # spot = @review.spot.create(:address => result )
         spot = @review.create_spot(:address => result )
@@ -39,7 +42,7 @@ module  Api
       end
     end
 
-    # # PATCH/PUT /users/1
+    # # PATCH/PUT /reviews/1
     def update
       if @review.update(review_params)
         render json: @review
@@ -48,7 +51,7 @@ module  Api
       end
     end
 
-    # # DELETE /users/1
+    # # DELETE /reviews/1
     def destroy
       @review.destroy
       render json: {message: 'Review is deleted successfully'},status: :okay
