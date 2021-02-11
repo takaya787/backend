@@ -17,7 +17,7 @@ module  Api
     end
 
     def create
-      result = Geocoder.search([ params[:lat], params[:lng] ]).first.address
+      result = Geocoder.search([ params[:lat], params[:lng] ])
       if result.empty?
         render json: {message: '投稿場所を選んでください', status: :bad_request}
       end
@@ -25,7 +25,8 @@ module  Api
       if @review.save
         # has_manyとhas_oneでコードが変わる(former: has_many, latter: has_one)
         # spot = @review.spot.create(:address => result )
-        spot = @review.create_spot(:address => result )
+        address = result.first.address
+        spot = @review.create_spot(:address => address )
         render json: {review: @review, message:'reviewが作成されました。'}, status: :created, location: api_review_url(@review)
       else
         render json: { errors: @review.errors}, status: :unprocessable_entity
